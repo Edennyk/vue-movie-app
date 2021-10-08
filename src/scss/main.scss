@@ -1,0 +1,14 @@
+// Default variable overrides
+$body-bg:#221c31;
+$body-color:#bdbac4;
+$primary:#6c3ce7;
+$white:#fcfafe;
+//before variable module
+
+// Required - bootstrap module
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss"
+
