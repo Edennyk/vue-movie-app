@@ -1,5 +1,6 @@
-:movie_camera:**This is a my first Vue.js web application for search movies from OMdb.com**
-# Vue - Movie app
+
+# Vue - Movie app  :movie_camera:
+- **This is a my first Vue.js web application for search movies from OMdb.com**
 - vue3 , Bootstrap5, SCSS, OMDB API, lodash
 
 # What I learned (Summary)
