@@ -5,7 +5,7 @@
       v-model="title"
       type="text"
       placeholder="Search for Movies, Series & more" 
-      @keyup.enter="searchmv"/>
+      @keyup.enter="apply()"/>
       <div class="selects">
         <select
          v-for="filter in filters"
@@ -25,15 +25,13 @@
         </select>
       </div>
       <button class="btn btn-primary"
-       @click="searchmv">
+       @click="apply">
         GO!
       </button>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   data(){
     return{
@@ -65,12 +63,15 @@ export default {
     }
   },
   methods:{
-    async searchmv(){
-      //search movies
-      const apikey = process.env.VUE_APP_OMDB_API_KEY
-      const res = await axios.get(`https://www.omdbapi.com/?apikey=${apikey}&s=${this.title}&type=${this.type}&y=${this.year}&page=1`)
-      console.log(res)
-
+    async apply(){
+      //search movies from store actions => movie module searchMovies 
+      this.$store.dispatch('movie/searchMovies', {
+        //payload
+        title: this.title,
+        type: this.type,
+        number: this.number,
+        year:this.year
+      })
     }
   }
 }
