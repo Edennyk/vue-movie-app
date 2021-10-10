@@ -1,5 +1,7 @@
+This is a my first Vue.js web application for search movies from OMdb.com
+
 # Vue - Movie app
-- vue3 , Bootstrap5, SCSS, OMDB API
+- vue3 , Bootstrap5, SCSS, OMDB API, lodash
 
 # What I learned (Summary)
 1. VueRouter
@@ -38,6 +40,6 @@
 - replaced at methods(searchMovie) from search component searchmv() 
 - actions: context(data), payload / dispatch() | this.$store.dispatch('movie/searchMovies')
 
-# Uniq Movie ID 
+# Lodash - Uniq Movie ID 
 - remove duplicate Movie's ID => use Lodash library
 - Lodash => uniqBy : returns the new duplicate free array
