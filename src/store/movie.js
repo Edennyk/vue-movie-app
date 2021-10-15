@@ -8,7 +8,7 @@ export default {
   state: () => {
     return {
       movies: [],
-      message:'',
+      message:'Search for the movie title!', // default message
       loading:false
     };
   },
@@ -41,11 +41,18 @@ export default {
   //payload : 
   actions: {
     async searchMovies({ state, commit }, payload) {
-      const { title, type , number, year } = payload
-      const apikey = process.env.VUE_APP_OMDB_API_KEY
-      const res = await axios.get(
-        `https://www.omdbapi.com/?apikey=${apikey}&s=${title}&type=${type}&y=${year}&page=1`
-      )
+      if(state.loading)  return 
+      
+      commit('updateState',{
+        message:'',
+        loading:true
+      })
+
+      try{
+        const res = await _fetchMovie({
+        ...payload,
+        page:1
+      })
       const { Search, totalResults } = res.data
       commit('updateState', {
         movies: _uniqBy(Search, 'imdbID')
@@ -54,17 +61,52 @@ export default {
       const total = parseInt(totalResults, 10)
       const pageLength = Math.ceil(total / 10)
 
+      // more requests
       if(pageLength > 1) {
         for(let page = 2; page<= pageLength; page +=1){
-          if(page > (number / 10)) break
+          if(page > (payload.number / 10)) break
           
-          const res = await axios.get(`https://www.omdbapi.com/?apikey=${apikey}&s=${title}&type=${type}&y=${year}&page=${page}`);
+          const res = await _fetchMovie({
+            ...payload,
+            page
+          })
           const { Search } = res.data
           commit('updateState', {
             movies: [...state.movies, ..._uniqBy(Search, 'imdbID')]
           });
         }
       }
-    },
-  },
-};
+    } catch(message){
+        commit('updateState', {
+          movies :[],
+          message
+        })
+      } finally{
+        commit('updateState',{
+          loading:false
+        })
+      }
+    }
+  }
+}
+
+
+function _fetchMovie(payload){
+  const {title, type, year, page} = payload
+  const apikey = process.env.VUE_APP_OMDB_API_KEY;
+  const url =  `https://www.omdbapi.com/?apikey=${apikey}&s=${title}&type=${type}&y=${year}&page=${page}`
+
+  return new Promise((resolve, reject)=>{
+    axios.get(url)
+    .then(res => {
+      if(res.data.Error){
+        reject(res.data.Error);
+      }
+      resolve(res)
+      console.log(res)
+    })
+    .catch(err =>{
+      reject(err.message)
+    })
+  })
+}

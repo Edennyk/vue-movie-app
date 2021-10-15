@@ -1,8 +1,18 @@
 // Default variable overrides
 $body-bg:#221c31;
 $body-color:#bdbac4;
+$light-gray:#DFDFDF;
 $primary:#6c3ce7;
 $white:#fcfafe;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 704px,
+  lg: 924px,
+  xl: 1140px,
+  xxl: 1364px
+);
+
 //before variable module
 
 // Required - bootstrap module
