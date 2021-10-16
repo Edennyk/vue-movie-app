@@ -8,6 +8,8 @@ import store from './store'
 // load plugin
 import loadImage from './plugins/loadImage'
 
+
+
 createApp(App)
   .use(router) //$route, $router
   .use(store) //$store

@@ -1,9 +1,7 @@
 <template>
   <footer>
     <Logo />
-    <a href="https://github.com/Edennyk" target="blank">
-    (c){{ new Date().getFullYear()}} EDEN K
-    </a>
+    (c){{ new Date().getFullYear()}} EDEN
   </footer>
 </template>
 

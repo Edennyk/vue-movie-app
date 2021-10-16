@@ -187,7 +187,7 @@ export default {
       margin-bottom: 30px;
     }
     .labels{
-      color:$span-color;
+      color:$yellow;
       font-size: 18px;
       span{
         &::after{
