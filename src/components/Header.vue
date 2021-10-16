@@ -34,7 +34,7 @@ export default {
         },
         {
           name:'Movie',
-          href:'/movie'
+          href:'/movie/tt2294629'
         },
         {
           name:'About',

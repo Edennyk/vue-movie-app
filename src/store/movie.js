@@ -9,7 +9,8 @@ export default {
     return {
       movies: [],
       message:'Search for the movie title!', // default message
-      loading:false
+      loading:false,
+      theMovie: {}
     };
   },
   //computed
@@ -82,9 +83,33 @@ export default {
           message
         })
       } finally{
+        commit('updateState', {
+          loading: false,
+        });
+      }
+    },
+    // detail movie info 
+    async searchMovieWithId({ state, commit }, payload){
+      if(state.loading) return
+
+      commit('updateState', {
+        theMovie:{},
+        loading: true,
+      });
+
+      try{
+        const res = await _fetchMovie(payload)
         commit('updateState',{
-          loading:false
+          theMovie: res.data
         })
+      } catch (error) {
+        commit('updateState',{
+          theMovie:{}
+        })
+      } finally{
+         commit('updateState', {
+           loading: false
+         });
       }
     }
   }
@@ -92,9 +117,11 @@ export default {
 
 
 function _fetchMovie(payload){
-  const {title, type, year, page} = payload
+  const {title, type, year, page, id} = payload
   const apikey = process.env.VUE_APP_OMDB_API_KEY;
-  const url =  `https://www.omdbapi.com/?apikey=${apikey}&s=${title}&type=${type}&y=${year}&page=${page}`
+  const url = id
+    ? `https://www.omdbapi.com/?apikey=${apikey}&i=${id}`
+    : `https://www.omdbapi.com/?apikey=${apikey}&s=${title}&type=${type}&y=${year}&page=${page}`;
 
   return new Promise((resolve, reject)=>{
     axios.get(url)
