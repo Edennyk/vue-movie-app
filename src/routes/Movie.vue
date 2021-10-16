@@ -43,9 +43,10 @@
              :key="name"
              :title="name"
              class="rating">
-             <img src="../assets/InternetMovieDatabase.png" />  <span>{{ score }}</span>
-             <img src="../assets/Metacritic.png" />  <span>{{ score }}</span>
-             <img src="../assets/RottenTomatoes.png" /><span>{{ score }}</span>
+             <img 
+             :src="`https://raw.githubusercontent.com/Edennyk/vue-movie-app/main/src/assets/${name}.png`"
+             :alt="name"/> 
+             <span>{{ score }}</span>
              </div>
            </div>
          </div>
