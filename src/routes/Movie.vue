@@ -21,7 +21,7 @@
      <div v-else 
           class="movie-details">
        <div 
-       :style="{ backgroundImage:`url(${ theMovie.Poster })`}"
+       :style="{ backgroundImage:`url(${ resizingPoster(theMovie.Poster)})`}"
        class="poster"></div>
        <div class="specs">
          <div class="title">
@@ -90,6 +90,11 @@ export default {
     this.$store.dispatch('movie/searchMovieWithId', {
       id:this.$route.params.id
     })
+  },
+  methods:{
+    resizingPoster(url, size = 700){
+      return url.replace('SX300', `SX${size}`)
+    }
   }
 }
 </script>
@@ -158,12 +163,13 @@ export default {
     .title{
       color:$primary;
       font-family: 'Oswald', sans-serif;
-      font-size: 70px;
+      font-size: 80px;
       line-height: 1;
       margin-bottom: 30px;
     }
     .labels{
       color:$span-color;
+      font-size: 20px;
       span{
         &::after{
           content:"\00b7";
@@ -176,6 +182,7 @@ export default {
     }
     .plot{
       margin-top:20px;
+      font-size:15px;
     }
     .ratings{
       .rating-wrap{
@@ -184,10 +191,11 @@ export default {
           display: flex;
           align-items: center;
           margin-right: 32px;
+          font-size:18px;
           img{
             height: 30px;
             flex-shrink: 0;
-            margin-right: 6px;
+            margin-right: 8px;
           }
         }
       }
@@ -195,7 +203,7 @@ export default {
     h3{
       margin:24px 0 6px;
       font-family: 'Oswald', sans-serif;
-      font-size:20px;
+      font-size:25px;
       color:$primary;
     }
   }
