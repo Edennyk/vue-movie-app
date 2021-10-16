@@ -17,12 +17,16 @@
      :z-index="9" 
      :fixed="true" />
     </template>
-  
+
      <div v-else 
           class="movie-details">
        <div 
        :style="{ backgroundImage:`url(${ resizingPoster(theMovie.Poster)})`}"
-       class="poster"></div>
+       class="poster">
+       <Loader
+       v-if="imgLoading"
+       absolute />
+       </div>
        <div class="specs">
          <div class="title">
            {{ theMovie.Title}}
@@ -77,6 +81,12 @@ import Loader from '../components/Loader'
 export default {
   components: { Loader },
 
+  data(){
+    return {
+      imgLoading:true
+    }
+  },
+
   computed:{
     theMovie() {
       return this.$store.state.movie.theMovie
@@ -93,7 +103,16 @@ export default {
   },
   methods:{
     resizingPoster(url, size = 700){
-      return url.replace('SX300', `SX${size}`)
+      if(!url || url === 'N/A'){
+        this.imgLoading = false
+        return ''
+      }
+      const src = url.replace('SX300', `SX${size}`)
+      this.$loadImage(src)
+        .then(()=>{
+          this.imgLoading = false
+        })
+      return src
     }
   }
 }
@@ -149,27 +168,27 @@ export default {
   
   .poster{
     flex-shrink: 0;
-    width:500px;
-    height: 500px * 3 / 2;
-    margin-right: 70px;
+    width:550px;
+    height: 550px * 3 / 2;
+    margin-right: 90px;
     border-radius: 10px;
     background-color: $light-gray;
     background-size: cover;
     background-position: center;
-
+    position:relative;
   }
   .specs{
     flex-grow: 1;
     .title{
       color:$primary;
       font-family: 'Oswald', sans-serif;
-      font-size: 80px;
+      font-size: 60px;
       line-height: 1;
       margin-bottom: 30px;
     }
     .labels{
       color:$span-color;
-      font-size: 20px;
+      font-size: 18px;
       span{
         &::after{
           content:"\00b7";

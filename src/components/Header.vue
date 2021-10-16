@@ -9,6 +9,7 @@
       <router-link 
         :to="nav.href"
         active-class="active"
+        :class="{ active: isMatch(nav.path) }"
         class="nav-link">
         {{ nav.name }}
       </router-link>
@@ -34,13 +35,20 @@ export default {
         },
         {
           name:'Movie',
-          href:'/movie/tt2294629'
+          href:'/movie/',
+          path:/^\/movie/ //'/movie'
         },
         {
           name:'About',
           href:'/about'
         },
       ]
+    }
+  },
+  methods:{
+    isMatch(path){
+      if(!path) return false
+      return path.test(this.$route.fullPath)
     }
   }
 }
@@ -52,6 +60,7 @@ header{
   padding: 0 40px;
   display: flex;
   align-items: center;
+  font-size:18px;
 
   .logo{
     margin-right: 40px;
