@@ -32,14 +32,23 @@
 - The attributes are each movie's imdbID
 - Store searched movie information in movie array data
 
-# Vuex(store)
+5. Vuex(store)
 - state management pattern , a centralized store for all the components in an application
-- store' mutations => .commit() / actions => .dispatch() 
+- namespaced (module)
+- state (data)
+- getters (computed)
+- mutations(methods) : change state
+- actions(methods, async)
+- mutations => .commit() / actions => .dispatch() 
 
-1. movie module
-- replaced at methods(searchMovie) from search component searchmv() 
-- actions: context(data), payload / dispatch() | this.$store.dispatch('movie/searchMovies')
-
-# Lodash - Uniq Movie ID 
+6. Lodash - Uniq Movie ID 
 - remove duplicate Movie's ID => use Lodash library
 - Lodash => uniqBy : returns the new duplicate free array
+
+7. mapState Helper
+- helper which generates computed getter functions, saving some keystrokes
+- use Object Spread Operator
+
+8. scrollBehavior
+- always scroll to top
+

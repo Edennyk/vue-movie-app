@@ -76,6 +76,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Loader from '../components/Loader'
 
 export default {
@@ -88,12 +89,10 @@ export default {
   },
 
   computed:{
-    theMovie() {
-      return this.$store.state.movie.theMovie
-    },
-    loading() {
-      return this.$store.state.movie.loading
-    }
+    ...mapState('movie',[
+      'theMovie',
+      'loading'
+    ])
   },
 
   created(){
@@ -168,9 +167,9 @@ export default {
   
   .poster{
     flex-shrink: 0;
-    width:550px;
-    height: 550px * 3 / 2;
-    margin-right: 90px;
+    width:500px;
+    height: 750px;
+    margin-right: 70px;
     border-radius: 10px;
     background-color: $light-gray;
     background-size: cover;
@@ -226,5 +225,33 @@ export default {
       color:$primary;
     }
   }
+  @include media-breakpoint-down(xl){
+    .poster{
+      width:300px;
+      height: 450px;
+      margin-right:40px;
+    }
+  }
+   @include media-breakpoint-down(lg){
+     display: block;
+     .poster{
+       margin-bottom:40px;
+     }
+   }
+   @include media-breakpoint-down(md){
+     .specs{
+       .title{
+         font-size: 50px;
+       }
+       .ratings{
+         .rating-wrap{
+           display: block;
+           .rating{
+             margin-top:10px;
+           }
+         }
+       }
+     }
+   }
 }
 </style>
