@@ -51,4 +51,5 @@
 8. scrollBehavior
 - always scroll to top
 
-9.
+9. Deploy
+- Netlify 
