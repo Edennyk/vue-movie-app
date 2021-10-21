@@ -5,11 +5,12 @@
 
 # What I learned (Summary)
 1. VueRouter
+- <RouterView> : a page is rendered
+- <RouterLink> : link to pages 
 - routes folder - index.js - createRouter , createWebHashHistory (/#/)
-- main.js : import vue router and use(router)
-- careted each page path 
 - '/' , 'Movie', 'About' == components
 - app.vue => inseide template "<router-view />"
+- [Vue - API Reference](https://next.router.vuejs.org/api/)
 
 2. Header.vue
 - placed at app.vue template <Header /> (before router-view)
@@ -22,8 +23,6 @@
 3. Search.vue
 - v-model : directive to create two-way data bindings on input
 - select has 3 data (type, number , year) / v-moeld get data from $data[filter.name]
-- @keyup.enter="search" (when user enter key press at input filed) and  @click="search" (click btn) : searchmv() 
-  methods excute
 
 4. MovieList.vue
 - Use MovieItem componenet 
@@ -52,3 +51,4 @@
 8. scrollBehavior
 - always scroll to top
 
+9.
