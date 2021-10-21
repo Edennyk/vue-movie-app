@@ -52,4 +52,4 @@
 - always scroll to top
 
 9. Deploy
-- Netlify 
+- Netlify : https://vue-omdb-movie.netlify.app
