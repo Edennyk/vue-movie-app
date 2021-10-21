@@ -1,6 +1,6 @@
 
 # Vue - Movie app  :movie_camera:
-[Live](https://vue-omdb-movie.netlify.app)
+- **[Live Demo](https://vue-omdb-movie.netlify.app)**
 - vue3 , Bootstrap5, SCSS, OMDB API, lodash
 
 # What I learned (Summary)
