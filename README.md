@@ -2,7 +2,7 @@
 # Vue - Movie app  :movie_camera:
 - **[Live Demo](https://vue-omdb-movie.netlify.app)**
 - vue3 , Bootstrap5, SCSS, OMDB API, lodash
-
+- For studying Vue.js 
 # What I learned (Summary)
 1. VueRouter
 - <RouterView> : a page is rendered
